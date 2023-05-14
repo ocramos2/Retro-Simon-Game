@@ -1,0 +1,55 @@
+body {
+  text-align: center;
+  background-color: #000000;
+  background-image: url("background.png"); /* Add your own background image */
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+#level-title {
+  font-family: "Press Start 2P", cursive;
+  font-size: 3rem;
+  margin: 5%;
+  color: #f7ff3c; /* Neon yellow */
+  text-shadow: 0 0 10px #f7ff3c; /* Neon yellow glow */
+}
+
+.container {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+.btn {
+  margin: 25px;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  border: 10px solid black;
+  border-radius: 20%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Neon glow effect */
+}
+
+.green {
+  background-color: #ff00aa; /* Bright pink */
+}
+
+.red {
+  background-color: #9a00ff; /* Purple */
+}
+
+.blue {
+  background-color: #00baff; /* Cyan */
+}
+
+.yellow {
+  background-color: #00ff0a; /* Bright green */
+}
+
+.neon {
+  transition: box-shadow 0.3s ease;
+}
+
+.neon:hover {
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.8); /* Increased glow on hover */
+}
