@@ -18,6 +18,11 @@ $(".btn").click(function () {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 
+  $("#" + userChosenColour)
+    .fadeIn(100)
+    .fadeOut(100)
+    .fadeIn(100);
+
   playSound(userChosenColour);
   animatePress(userChosenColour);
 
@@ -56,6 +61,7 @@ function nextSequence() {
     .fadeIn(100)
     .fadeOut(100)
     .fadeIn(100);
+
   playSound(randomChosenColour);
 }
 
