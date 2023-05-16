@@ -6,8 +6,13 @@ var userClickedPattern = [];
 var started = false;
 var level = 0;
 
+$(document).ready(function () {
+  $("#overlay").fadeIn(1000);
+});
+
 $(document).keypress(function () {
   if (!started) {
+    $("#overlay").fadeOut(1000);
     $("#level-title").text("Level " + level);
     nextSequence();
     started = true;
@@ -64,6 +69,10 @@ function animatePress(currentColor) {
   setTimeout(function () {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
+
+  $("#" + currentColor)
+    .fadeOut(100)
+    .fadeIn(100);
 }
 
 function playSound(name) {

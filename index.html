@@ -8,24 +8,21 @@
       href="https://fonts.googleapis.com/css?family=Press+Start+2P"
       rel="stylesheet"
     />
-    <style>
-      .start-glow {
-        animation: glow 1s ease-in-out infinite alternate;
-      }
-
-      @keyframes glow {
-        from {
-          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
-        }
-        to {
-          text-shadow: 0 0 20px #f7ff3c, 0 0 30px #f7ff3c, 0 0 40px #f7ff3c;
-        }
-      }
-    </style>
   </head>
 
   <body>
-    <h1 id="level-title" class="start-glow">Press a Key to Start</h1>
+    <div id="overlay">
+      <div class="message-container">
+        <h2>Welcome to Retro Simon Game</h2>
+        <p>Instructions:</p>
+        <p>
+          Watch the pattern, remember it, and repeat it by clicking the buttons.
+        </p>
+        <p>Press any key to start!</p>
+      </div>
+    </div>
+
+    <h1 id="level-title">Press a Key to Start</h1>
     <div class="container">
       <div class="row">
         <div type="button" id="green" class="btn green neon"></div>
