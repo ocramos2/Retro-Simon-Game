@@ -10,7 +10,7 @@ $(document).ready(function () {
   $("#overlay").fadeIn(1000);
 });
 
-$(document).keypress(function () {
+$(document).on("click", function () {
   if (!started) {
     $("#overlay").fadeOut(1000);
     $("#level-title").text("Level " + level);
@@ -20,13 +20,15 @@ $(document).keypress(function () {
 });
 
 $(".btn").click(function () {
-  var userChosenColour = $(this).attr("id");
-  userClickedPattern.push(userChosenColour);
+  if (started) {
+    var userChosenColour = $(this).attr("id");
+    userClickedPattern.push(userChosenColour);
 
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
+    playSound(userChosenColour);
+    animatePress(userChosenColour);
 
-  checkAnswer(userClickedPattern.length - 1);
+    checkAnswer(userClickedPattern.length - 1);
+  }
 });
 
 function checkAnswer(currentLevel) {
@@ -39,13 +41,14 @@ function checkAnswer(currentLevel) {
   } else {
     playSound("wrong");
     $("body").addClass("game-over");
-    $("#level-title").html("Game Over!<br>Press Any Key to Restart.");
+    $("#level-title").html("Game Over!<br>Click Anywhere to Restart.");
+
+    $(document).off("click"); // Disable click event until game is restarted
 
     setTimeout(function () {
       $("body").removeClass("game-over");
-    }, 200);
-
-    startOver();
+      $(document).on("click", restartGame); // Enable click event to restart the game
+    }, 20);
   }
 }
 
@@ -54,7 +57,7 @@ function nextSequence() {
   level++;
   $("#level-title").text("Level " + level);
 
-  // Delay the next sequence by 3 seconds on level 1
+  // Delay the next sequence by 1.5 seconds on level 1
   var delay = level === 1 ? 1500 : 0;
 
   setTimeout(function () {
@@ -86,8 +89,17 @@ function playSound(name) {
   audio.play();
 }
 
-function startOver() {
+function restartGame() {
   level = 0;
   gamePattern = [];
   started = false;
+  $(document).off("click");
+  $(document).on("click", function () {
+    if (!started) {
+      $("#overlay").fadeOut(1000);
+      $("#level-title").text("Level " + level);
+      nextSequence();
+      started = true;
+    }
+  });
 }
